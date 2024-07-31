@@ -1,6 +1,6 @@
-...
+
 # Namaste React 🚀
-...
+
 About
 Practicing React Concepts(😂it's mere test site) and i know it's pathetic
 # parcel
@@ -23,7 +23,6 @@ Practicing React Concepts(😂it's mere test site) and i know it's pathetic
 
 
 # Namaste Food
-/**
  * Header
  *  - Logo
  *  - Nav Items
@@ -36,7 +35,6 @@ Practicing React Concepts(😂it's mere test site) and i know it's pathetic
  *  - Links
  *  - Address
  *  - Contact
- */
 
 
 
