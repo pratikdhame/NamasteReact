@@ -1,7 +1,8 @@
 ...
 # Namaste React 🚀
 ...
-
+About
+Practicing React Concepts(😂it's mere test site) and i know it's pathetic
 # parcel
 - Dev Build
 - Local Server
