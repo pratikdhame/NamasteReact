@@ -4,7 +4,7 @@ import resList from "../utils/mockData.js";
 
 const Body = () => {
   // State Variable - Super Powerful variable
-
+  // Changes Github Ownership
   const [listOfRestaurants, setListOfRestaurant] = useState(resList);
 
   return (
