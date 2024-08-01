@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData.js";
 
-
 const Body = () => {
-
   // State Variable - Super Powerful variable
 
   const [listOfRestaurants, setListOfRestaurant] = useState(resList);
