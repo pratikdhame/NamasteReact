@@ -4,9 +4,9 @@ import resList from "../utils/mockData.js";
 import Shimmer from "./Shimmer.js";
 
 const Body = () => {
-  // State Variable - Super Powerful variable
-  // Changes Github Ownership
-  const [listOfRestaurants, setListOfRestaurant] = useState([]);
+  const [listOfRestaurants, setListOfRestaurant] = useState(resList);
+  const [filteredRestaurant, setFilteredRestaurant  ] = useState(resList);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -23,11 +23,29 @@ const Body = () => {
     );
   };
 
+  const FilterRestaurants = () => {
+    const filteredList = listOfRestaurants.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredRestaurant(filteredList);
+  };
+
   return listOfRestaurants.length === 0 ? (
-    <Shimmer></Shimmer>
+    <Shimmer />
   ) : (
     <div className="body">
       <div className="filter">
+        <div>
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button onClick={FilterRestaurants}>Search</button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -41,7 +59,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
