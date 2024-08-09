@@ -12,9 +12,19 @@
   display: flex;
   list-style-type: none;
 }
-.nav-items > ul > li {
+.nav-items > ul > li  {
   padding: 10px;
   margin: 10px;
+}
+
+.nav-items > ul > li:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.nav-items > ul > li > a {
+  text-decoration: none;
+  color: black;
 }
 
 .res-container {
