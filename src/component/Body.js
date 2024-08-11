@@ -2,65 +2,46 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData.js";
 import Shimmer from "./Shimmer.js";
+import { Link } from "react-router-dom";
 
 const Body = () => {
-
-  const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+  const [listOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    setListOfRestaurants(resList);
-    setFilteredRestaurant(resList);
-  }
-  , []);
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const urlProxy = "https://cors-anywhere.herokuapp.com/";
+    const targetUrl =
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5912716&lng=73.73890899999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+    const data = await fetch(`${urlProxy}${targetUrl}`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+
+    const json = await data.json();
+    setListOfRestaurant(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   const FilterRestaurants = () => {
     const filteredList = listOfRestaurants.filter((res) =>
       res.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredRestaurant(filteredList);
-  }
+  };
 
-  
-  // const [listOfRestaurants, setListOfRestaurant] = useState([]);
-//   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-//   const [searchText, setSearchText] = useState("");
-  
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-
-//   const fetchData = async () => {
-//     const urlProxy = "https://cors-anywhere.herokuapp.com/";
-//     const targetUrl =
-//     "https://www.swiggy.com/mapi/homepage/getCards?lat=18.5912716&lng=73.73890899999999";
-//     const data = await fetch(`${urlProxy}${targetUrl}`, {
-//       headers: {
-//         "X-Requested-With": "XMLHttpRequest",
-//       },
-//     });
-    
-//     const json = await data.json();
-//     setListOfRestaurant(
-//       json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
-//     );
-//     setFilteredRestaurant(
-//       json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
-//     );
-//   };
-  
-//   const FilterRestaurants = () => {
-//     const filteredList = listOfRestaurants.filter((res) =>
-//       res.info.name.toLowerCase().includes(searchText.toLowerCase())
-//   );
-//   setFilteredRestaurant(filteredList);
-// };
-
-
-return listOfRestaurants.length === 0 ? (
-  <Shimmer />
-) : (
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
         <div>
@@ -88,7 +69,12 @@ return listOfRestaurants.length === 0 ? (
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
