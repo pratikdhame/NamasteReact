@@ -1,9 +1,16 @@
+import React from 'react'
+import User from './User'
+import UserClass from './UserClass'
+
 const About = () => {
-    return (
-        <div>
+  return (
+    <>
         <h1>About</h1>
-        </div>
-    );
+        <p>This is about page</p>
+        {/* <User/> */}
+        <UserClass/>
+    </>
+  )
 }
 
-export default About;
+export default About
