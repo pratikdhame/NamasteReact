@@ -10,8 +10,6 @@ const Header = () => {
     btnName === "Logout" ? setBtnName("Login") : setBtnName("Logout");
   };
 
-  
-
   return (
     <div className="header">
       <div className="logo-container">
@@ -25,10 +23,18 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About us</Link> </li>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/#">Cart</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About us</Link>{" "}
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/#">Cart</Link>
+          </li>
           <button className="login-btn" onClick={handleClick}>
             {btnName}
           </button>
