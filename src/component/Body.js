@@ -3,7 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData.js";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
-
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
@@ -31,6 +31,12 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useOnlineStatus();;
+  if (!onlineStatus) {
+    return <h1>Offline</h1>;
+  }
+  
 
   const FilterRestaurants = () => {
     const filteredList = listOfRestaurants.filter((res) =>

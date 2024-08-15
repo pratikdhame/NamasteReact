@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import image_logo from "../../public/images/site_Logo_jpeg.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+  const onlineStatus = useOnlineStatus();
 
   const handleClick = () => {
     btnName === "Logout" ? setBtnName("Login") : setBtnName("Logout");
@@ -23,6 +24,9 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>
+            Online Status: {onlineStatus ? "🟢" : "🔴"}
+          </li>
           <li>
             <Link to="/">Home</Link>
           </li>
