@@ -20,17 +20,40 @@ const RestaurantCard = (props) => {
     //   <h5>{deliveryTime} Minutes</h5>
     // </div>
 
-<div class="max-w-64 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-stretch">
-        <img className="res-logo rounded-lg"
-        src={CDN_URL + cloudinaryImageId}
-        alt="Res Logo" />
-    <div class="p-5">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
-        <p class="mb-3 font-normal text-gray-700">{cuisines.join(", ")}</p>
-        <p class="mb-3 font-normal text-gray-700">{avgRating}</p>
-        <p class="mb-3 font-normal text-gray-700">{costForTwo}</p>
-        <p class="mb-3 font-normal text-gray-700">{deliveryTime} Minutes</p>
-    </div>
+    // <div class="max-w-64 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-stretch">
+    //   <img
+    //     className="res-logo rounded-lg"
+    //     src={CDN_URL + cloudinaryImageId}
+    //     alt="Res Logo"
+    //   />
+    //   <div class="p-5">
+    //     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+    //       {name}
+    //     </h5>
+    //     <p class="mb-3 font-normal text-gray-700">{cuisines.join(", ")}</p>
+    //     <p class="mb-3 font-normal text-gray-700">{avgRating}</p>
+    //     <p class="mb-3 font-normal text-gray-700">{costForTwo}</p>
+    //     <p class="mb-3 font-normal text-gray-700">{deliveryTime} Minutes</p>
+    //   </div>
+    // </div>
+
+<div className="w-64 bg-white border border-gray-200 rounded-lg shadow flex flex-col m-4">
+  <img
+    className="res-logo w-full h-48 object-cover rounded-t-lg"
+    src={CDN_URL + cloudinaryImageId}
+    alt="Res Logo"
+  />
+  <div className="p-5 flex-grow">
+    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 truncate">
+      {name}
+    </h5>
+    <p className="mb-3 font-normal text-gray-700 truncate">
+      {cuisines.join(", ")}
+    </p>
+    <p className="mb-3 font-normal text-gray-700">{avgRating}</p>
+    <p className="mb-3 font-normal text-gray-700">{costForTwo}</p>
+    <p className="mb-3 font-normal text-gray-700">{deliveryTime} Minutes</p>
+  </div>
 </div>
 
   );

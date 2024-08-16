@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between bg-green-100 shadow-lg mb-2">
+    <div className="flex justify-between bg-white shadow">
       <div className="logo-container">
         <img
           src={image_logo}
@@ -20,29 +20,30 @@ const Header = () => {
           alt="Logo"
           width={100}
           height={100}
+          style={{ mixBlendMode: 'multiply' }}
         />
       </div>
       <div className="flex items-center">
-        <ul className="flex p-4 m-4">
-          <li className="px-4">
-            Online Status: {onlineStatus ? "🟢" : "🔴"}
+        <ul className="flex justify-between self-center">
+          <li className="px-4 self-center font-mono">
+            Online: {onlineStatus ? "🟢" : "🔴"}
           </li>
-          <li className="px-4">
+          <li className="px-4 self-center">
             <Link to="/">Home</Link>
           </li>
-          <li className="px-4">
+          <li className="px-4 self-center">
             <Link to="/about">About us</Link>{" "}
           </li>
-          <li className="px-4">
+          <li className="px-4 self-center">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="px-4">
+          <li className="px-4 self-center">
             <Link to="/#">Cart</Link>
           </li>
-          <li className="px-4">
+          <li className="px-4 self-center">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <button className="px-4" onClick={handleClick}>
+          <button className="px-4 py-2 m-4 bg-green-300 rounded-lg" onClick={handleClick}>
             {btnName}
           </button>
         </ul>
