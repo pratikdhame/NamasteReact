@@ -8,7 +8,6 @@ import Contact from './component/Contact.js';
 import Error from './component/Error.js'; 
 import RestaurantMenu from './component/RestaurantMenu.js'; 
 import Shimmer from './component/Shimmer.js';
-// import Grocery from './component/Grocery.js';
 const Grocery = lazy(() => import('./component/Grocery.js'));
 
 const AppLayout = () => {
