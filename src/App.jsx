@@ -9,7 +9,9 @@ import Error from './component/Error.js';
 import RestaurantMenu from './component/RestaurantMenu.js'; 
 import Shimmer from './component/Shimmer.js';
 const Grocery = lazy(() => import('./component/Grocery.js'));
+import RestaurantCategory from './component/RestaurantCategory.js';
 
+import ItemList from './component/ItemList.js';
 const AppLayout = () => {
   
   return (
@@ -46,6 +48,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/grocery",
         element: <Suspense fallback={<Shimmer/>}><Grocery/></Suspense>
+      },
+      {
+        path: "/restaurantcategory",
+        element: <RestaurantCategory/>
+      },
+      {
+        path: "/ItemList",
+        element: <ItemList/>
       }
     ],
     errorElement: <Error/>
