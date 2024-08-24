@@ -36,5 +36,13 @@ Practicing React Concepts(😂it's mere test site) and i know it's pathetic
  *  - Address
  *  - Contact
 
+ # Redux Toolkit
+ - Install @reduxjs/toolkit and react-redux
+ - Build our store
+ - Connect our store to our app
+ - Slice (cardSlice)
+ - dispatch(action)
+ - Selector
+
 
 

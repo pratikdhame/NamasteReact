@@ -11,8 +11,11 @@ import Shimmer from "./component/Shimmer.js";
 const Grocery = lazy(() => import("./component/Grocery.js"));
 import RestaurantCategory from "./component/RestaurantCategory.js";
 import UserContext from "./utils/UserContext.js";
-
 import ItemList from "./component/ItemList.js";
+
+import {Provider} from "react-redux";
+import appStore from "./utils/appStore.js";
+
 const AppLayout = () => {
   const [userName, setUserName] = useState("Default User");
 
@@ -24,12 +27,14 @@ const AppLayout = () => {
   }, []);
 
   return (
+    <Provider store={appStore}>
     <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div className="app">
         <Header />
         <Outlet />
       </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
