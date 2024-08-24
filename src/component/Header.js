@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import image_logo from "../../public/images/site_Logo_jpeg.jpg";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
+
+  const {loggedInUser} = useContext(UserContext);
 
   const handleClick = () => {
     btnName === "Logout" ? setBtnName("Login") : setBtnName("Logout");
@@ -46,6 +50,7 @@ const Header = () => {
           <button className="px-4 py-2 m-4 bg-green-300 rounded-lg" onClick={handleClick}>
             {btnName}
           </button>
+          <li className="px-4 self-center font-bold">{loggedInUser}</li> 
         </ul>
       </div>
     </div>

@@ -20,7 +20,6 @@ const UserFunction = () => {
         const response = await fetch("https://api.github.com/users/pratikdhame");
         const json = await response.json();
         setUserInfo(json);
-        console.log(json);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
