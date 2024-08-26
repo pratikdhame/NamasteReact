@@ -15,6 +15,7 @@ import ItemList from "./component/ItemList.js";
 
 import {Provider} from "react-redux";
 import appStore from "./utils/appStore.js";
+import Cart from "./component/Cart.js";
 
 const AppLayout = () => {
   const [userName, setUserName] = useState("Default User");
@@ -27,14 +28,14 @@ const AppLayout = () => {
   }, []);
 
   return (
-    // <Provider store={appStore}>
+    <Provider store={appStore}>
     <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div className="app">
         <Header />
         <Outlet />
       </div>
     </UserContext.Provider>
-    // </Provider>
+    </Provider>
   );
 };
 
@@ -67,14 +68,18 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
+      // {
+      //   path: "/restaurantcategory",
+      //   element: <RestaurantCategory />,
+      // },
+      // {
+      //   path: "/ItemList",
+      //   element: <ItemList />,
+      // },
       {
-        path: "/restaurantcategory",
-        element: <RestaurantCategory />,
-      },
-      {
-        path: "/ItemList",
-        element: <ItemList />,
-      },
+        path: "/cart",
+        element: <Cart />,
+      }
     ],
     errorElement: <Error />,
   },
