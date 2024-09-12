@@ -10,16 +10,21 @@ const useRestaurantMenu = (resId) => {
   }, []);
 
   const fetchData = async () => {
-    const urlProxy = "https://cors-anywhere.herokuapp.com/";
-    const targetUrl = MENU_API + resId;
-    const data = await fetch(`${urlProxy}${targetUrl}`, {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    const json = await data.json();
-    setResInfo(json.data);
+    try {
+      const targetUrl = MENU_API + resId;
+      const data = await fetch(targetUrl, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      const json = await data.json();
+      setResInfo(json.data);
+    } catch (error) {
+      console.error("Error fetching restaurant menu: ", error);
+      setResInfo(null); // Handle errors by setting resInfo to null
+    }
   };
+
   return resInfo;
 };
 

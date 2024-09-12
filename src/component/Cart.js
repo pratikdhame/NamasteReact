@@ -17,7 +17,7 @@ const Cart = () => {
         <h1 className='text-2xl font-bold'>Cart</h1>
         <div className='w-6/12 m-auto'>
             <button className='p-2 m-3 bg-black text-white rounded-lg'
-            onClick={()=>handleClearCart()}
+            onClick={handleClearCart}
             >Clear Cart</button>
             {cartItems.length === 0 && <p>Your cart is empty</p>}
             <ItemsList items={cartItems}/>
@@ -26,4 +26,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default Cart;

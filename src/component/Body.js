@@ -5,6 +5,7 @@ import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
 import UserContext from "../utils/UserContext.js";
+import { targetUrl } from "../utils/constants.js";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
@@ -18,23 +19,25 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const urlProxy = "https://cors-anywhere.herokuapp.com/";
-    const targetUrl =
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5912716&lng=73.73890899999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-    const data = await fetch(`${urlProxy}${targetUrl}`, {
-      headers: {
-        "x-requested-with": "XMLHttpRequest",
-},
-    });
-
-    const json = await data.json();
-    setListOfRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    try { 
+      const data = await fetch(targetUrl, {
+        headers: {
+          "x-requested-with": "XMLHttpRequest",
+        },
+      });
+  
+      const json = await data.json();
+      if (json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants) {
+        setListOfRestaurant(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+        setFilteredRestaurant(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+      }
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      setListOfRestaurant([]); // Still render shimmer in case of an error
+    }
   };
+  
+  
 
   const onlineStatus = useOnlineStatus();;
   if (!onlineStatus) {
