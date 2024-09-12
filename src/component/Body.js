@@ -21,8 +21,12 @@ const Body = () => {
   const fetchData = async () => {
     try { 
       const data = await fetch(targetUrl, {
+        method: 'GET',
         headers: {
           "x-requested-with": "XMLHttpRequest",
+          'Content-Type': 'application/json',
+          'Origin': 'https://namaste-react-red.vercel.app'
+
         },
       });
   
